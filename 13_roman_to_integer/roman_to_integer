@@ -1,0 +1,32 @@
+# @param {String} s
+# @return {Integer}
+def roman_to_int(s)
+    roman_hash = {
+    'I'=> 1,
+    'V'=> 5,
+    'X'=> 10,
+    'L'=> 50,
+    'C'=> 100,
+    'D'=> 500,
+    'M'=> 1000
+    }
+
+    total = 0
+    i = 0
+      while i < s.length
+        if i + 1 < s.length && roman_hash[s[i]] < roman_hash[s[i+1]]
+          total += roman_hash[s[i+1]] - roman_hash[s[i]]
+          i += 1
+        else
+          total += roman_hash[s[i]]
+        end
+        i += 1
+      end
+    total
+end
+
+# set hash - keys are roman numerals and values are number values
+# start with total and zero and set a counter, i
+# as long as i is less than the length of the string aka there are still numerals to evaluate, perform a loop
+# at certain key at given i, if the corresponding hash value is less than the next key-value pair of the hash, subtract the two instead of simply adding them
+# otherwise, just add the value of the key to the running total
