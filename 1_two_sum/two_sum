@@ -1,0 +1,20 @@
+# @param {Integer[]} nums
+# @param {Integer} target
+# @return {Integer[]}
+
+def two_sum(nums, target)
+    result = {}
+    nums.each_with_index do |n, i|
+        if result[target - n]
+            return result[target - n], i
+        end
+        result[n] = i
+    end
+end
+
+# set result hash w/ key as num and value as index position
+# each_with_index aka with_index enumerator --> two params of n (number) & i (index position)
+# loop to check where the result hash has a number that adds up to target number
+#   can subtract given number, n, from target to find the other number
+#   return the index of the "other number"
+# the output array should include the indices of the two numbers that equal the target
