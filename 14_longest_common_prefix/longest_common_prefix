@@ -1,0 +1,24 @@
+# @param {String[]} strs
+# @return {String}
+def longest_common_prefix(strs)
+    return "" if strs.empty?
+    
+    prefix = ""
+    lil_string = (strs.sort).delete_at(0)
+    lil_string.each_char do |c|
+        strs.each do |s|
+            if s.start_with?(prefix + c)
+                next
+            else
+                return prefix
+            end
+        end
+        prefix += c
+    end
+end
+
+# return "" if given param, strs, is empty
+# set variable, prefix, to equal empty "" which we'll add characters to if they match
+# with array of given strings, take out the first string from the array to compare prefix letters amongst the other strings in the array
+# for each letter of lil_string, if the ensuing string of the array has the same letter, check the next string of the array to see if that letter matches as well - so on and so forth to find the longest common prefix
+# continue this loop cycle unless a mismatch is found, in which the prefix variable will be returned
