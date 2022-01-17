@@ -1,0 +1,29 @@
+# @param {String} s
+# @return {Boolean}
+
+def is_valid(s)
+    parentheses = {
+        '(' => ')',
+        '[' => ']',
+        '{' => '}'
+    }
+    
+    stack = []
+    s.each_char do |c|
+        if !stack.last.nil? && parentheses[stack.last] == c
+            stack.pop
+        else
+            stack << c
+        end
+    end
+    stack.empty?
+end
+
+# set hash, parentheses, with keys set as open brackets and values set as closing brackets
+# set stack variable as empty array to use the stack data structure
+# for an opening bracket, if the value of last element of the stack is equivalent to the closing bracket/hash value in the parentheses hash, then we have valid parentheses match
+# pop off the closing bracket from the stack
+# otherwise, shovel the opening bracket back into the array in case there is a valid closing bracket at different index of the stack array
+# perform loop for all elements, c, of the stack array
+# if the stack is empty, then output is true because each opening bracket has a matching closing bracket
+# if stack is not empty, every opening bracket didn't pair with a matching closing bracket
