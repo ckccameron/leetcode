@@ -1,0 +1,10 @@
+# @param {Integer[]} nums
+# @return {Integer}
+
+def remove_duplicates(nums)
+    nums.uniq!
+    nums.size
+end
+
+# shoutout to Ruby for having array methods to simplify and handle this pretty easily
+# uniq! removes duplicate elements from the array, and size simply counts the remaining elements of the array
