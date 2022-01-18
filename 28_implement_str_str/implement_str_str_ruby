@@ -1,0 +1,19 @@
+# @param {String} haystack
+# @param {String} needle
+# @return {Integer}
+
+def str_str(haystack, needle)
+    return 0 if needle.empty?
+    
+    needle_index = haystack.index(needle)
+    if needle_index.nil?
+        return -1
+    else
+        return needle_index
+    end
+end
+
+# from the start, the empty string edge case can be handled with simple return statement
+# the needle_index is essentially the index within the haystack where the needle first occurs
+# if there is no needle_index aka no needle exists, return -1
+# otherwise, the needle was found so return the index of where it is in the haystack
