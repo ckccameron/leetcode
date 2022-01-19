@@ -1,0 +1,18 @@
+# @param {Integer[]} nums
+# @return {Integer}
+
+def max_sub_array(nums)
+    max_sum = current_sum = nums[0]
+    
+    for i in 1...nums.length
+        max_sum = [max_sum + nums[i], nums[i]].max
+        current_sum = [max_sum, current_sum].max
+    end
+    current_sum
+end
+
+# set arrays, max_sum and current_sum, that have same initial value as the nums input array at index 0
+# in Ruby, two dots range operator is inclusive (ex. 1..5 means 1 through 5) and three dots range operator doesn't include the high value (ex. 1...5 means 1 through 4)
+# want to add a given number in the index to the previous index to start building a sum
+# keep track of max sum at each index in the subarray with current_sum
+# either continue with max_sum or use the current_sum that is tracking the global max sum found so far through the nums array traversal
