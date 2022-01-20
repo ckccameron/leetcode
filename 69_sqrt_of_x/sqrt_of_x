@@ -1,0 +1,29 @@
+# @param {Integer} x
+# @return {Integer}
+
+def my_sqrt(x)
+    low = 0
+    high = x
+    
+    while low <= high
+        mid = low + (high - low) / 2
+        return mid if mid * mid == x
+
+        if mid * mid > x
+            high = mid - 1
+        elsif mid * mid < x
+            low = mid + 1
+        end
+    end
+    low - 1
+end
+
+# set a low possible root of 0 and a high root being the value of x passed through the function
+# using binary search approach, start at low value and high value and work way to the middle until square root is found
+# take the low value added to (high minus low) and divide by 2
+# if this value multiplied by itself equals the value of x passed through, an exact root has been found, therefore the function should return the mid value here
+# if not, there are two search cases to consider: the mid value multiplied by itself is either greater than x or less than x
+# if greater than x, move the high value down by 1 from the mid value; if less than x, move the low value up by 1 from the mid value
+# as long as the low value is less than or equal to the high value, this search will continue until a root is found
+# since the decimal digits are being truncated for this problem, the low value returned from the while loop needs to be decreased by 1 to essentially round down (ex. returned root for 7 would be 2 instead of 3)
+
