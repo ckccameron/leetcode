@@ -1,0 +1,19 @@
+# @param {Integer[]} digits
+# @return {Integer[]}
+
+def plus_one(digits)
+    integer = digits.join().to_i
+    integer += 1
+    result = []
+    
+    integer.to_s.each_char do |c|
+        result << c.to_i
+    end
+    result
+end
+
+# since the digits are input into an array with commas separating them, join the digits and convert to integer to make it a data type that math can be applied to
+# add 1 to the converted integer
+# set a result array placeholder
+# set the integer to a string so that each character/digit can be manipulated individually and subsequently appended to the result array as an integer
+# this handles instances where the last digit of the array is increased by 1 (ex. [1,2,3]), and also handles instances where a new leading digit is needed (ex. [9])
