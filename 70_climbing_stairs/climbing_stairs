@@ -1,0 +1,20 @@
+# @param {Integer} n
+# @return {Integer}
+
+def climb_stairs(n)
+    hash = {
+        0 => 1,
+        1 => 1
+    }
+    
+    i = 2
+    while i <= n
+        hash[i] = hash[i-1] + hash[i-2]
+        i += 1
+    end
+    hash[n]
+end
+
+# set hash to cover the initial possibilities - if there are 0 steps, there is one way to get to the "top" and if there is 1 step, there is also one way to get to the "top"
+# for whatever value of n steps, 1 step before nth step or 2 steps before nth step are the possible moves
+# increase the counter, i, until it reaches n and tally the different climb combos with the hash
