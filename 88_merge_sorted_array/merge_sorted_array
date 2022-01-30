@@ -1,0 +1,21 @@
+# @param {Integer[]} nums1
+# @param {Integer} m
+# @param {Integer[]} nums2
+# @param {Integer} n
+# @return {Void} Do not return anything, modify nums1 in-place instead.
+
+def merge(nums1, m, nums2, n)
+    return nums1 if m == 1 && nums1.size == 1
+    
+    i = 0
+    until nums2.empty?
+        nums1[m + i] = nums2.shift
+        i += 1
+    end
+    nums1.sort!
+end
+
+# set a counter, i, to loop through nums2 input array
+# shift method removes the first element of array and returns it, or nil if the array is empty
+# until all numbers from nums2 have been looped through, use shift method to remove element from nums2 and merge it into nums1
+# after nums2 has been merged, sort nums1 array so numbers are in numerical order
