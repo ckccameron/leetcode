@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val = 0, left = nil, right = nil)
+#         @val = val
+#         @left = left
+#         @right = right
+#     end
+# end
+# @param {TreeNode} root
+# @return {Integer}
+
+def max_depth(root)
+    return 0 if !root
+    
+    max = 0
+    left = max_depth(root.left) + 1
+    right = max_depth(root.right) + 1
+    max = [left,right].max
+    max
+end
+
+# if there is no root initially, or if we reach the end of binary tree, return 0
+# keep track of tree's max depth by setting value of max to 0
+# recursively check the left side of the tree and 1 each level through as depth increases
+# do the same with the right side
+# check to see whether the left or right side is bigger - if they are equal, this will still return the max_depth
+# now return the value of max that was discovered with the given root argument for the binary tree input
