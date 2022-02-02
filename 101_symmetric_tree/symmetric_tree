@@ -1,0 +1,34 @@
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val = 0, left = nil, right = nil)
+#         @val = val
+#         @left = left
+#         @right = right
+#     end
+# end
+# @param {TreeNode} root
+# @return {Boolean}
+
+def is_symmetric(root)
+    return true if !root
+    
+    tree_symmetry?(root.left, root.right)
+end
+
+def tree_symmetry?(node1, node2)
+    return true if node1.nil? && node2.nil?
+    return false if (node1 && node2) && (node1.val != node2.val) || (!node1.nil? && node2.nil?) || (node1.nil? && !node2.nil?)
+    
+    tree_symmetry?(node1.left, node2.right) && tree_symmetry?(node1.right, node2.left)
+end
+
+# first, set helper method, tree_symmetry?, to recursively compare node values for equality
+# if node1 and node2 are both nil, this is technically mirrored so return true
+# for the false return statement, there are few cases that have to be considered:
+# - the values for node1 and node2 are not equal
+# - node1 is not nil but node2 is nil, therefore these are not equal
+# - node1 is nil but node2 is not nil, therefore these are not equal
+# if each of these return statements are passed by, then recursively compare the nodes on each side of the "split" to their mirrored counterpart and see if the node values are equivalent
+# if there is no root, return true for the is_symmetric method
+# otherwise, the tree_symmetry? method is returning a boolean, so call this method using the given root and pass in argument of root.left and root.right to essentially "split" the tree and begin recursive comparison of node values throughout binary tree
