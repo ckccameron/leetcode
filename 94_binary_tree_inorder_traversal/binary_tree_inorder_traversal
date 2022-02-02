@@ -1,0 +1,32 @@
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val = 0, left = nil, right = nil)
+#         @val = val
+#         @left = left
+#         @right = right
+#     end
+# end
+# @param {TreeNode} root
+# @return {Integer[]}
+
+def inorder_traversal(root)
+    result = []
+    return result if root.nil?
+    node_travel(root, result)
+    result
+end
+
+def node_travel(node, result)
+    node_travel(node.left, result) if node.left
+    result << node.val
+    node_travel(node.right, result) if node.right
+end
+
+# first, set a helper method, node_travel, to set pattern of how node values are popped from the given binary tree
+# if there is a left node, traverse to the left - then if there is a right node, traverse to the right
+# node values are pushed into result array
+# in base method, inorder_traversal, empty result array will house the output node values
+# return statement of empty array if the given binary tree has a nil root value
+# call node_travel method with arguments of root value and result array
+# recursively traverse through given binary tree until all nodes have been assessed and return the result array
