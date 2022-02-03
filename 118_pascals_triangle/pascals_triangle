@@ -1,0 +1,31 @@
+# @param {Integer} num_rows
+# @return {Integer[][]}
+
+def generate(num_rows)
+    current_row = []
+    result = []
+    
+    (1..num_rows).each do |row|
+        previous_row = current_row.dup
+        current_row = []
+        (1..row).each do |value|
+            if value == 1 || value == row
+                current_row << 1
+            else
+                current_row << previous_row[value - 1] + previous_row[value - 2]
+            end
+        end
+        result << current_row
+    end
+    result
+end
+
+# set an empty array for current_row to keep track of rows being built for the triangle
+# set another empty array for result to keep track of the expected output as triangle is built
+# loop where amount of times through is from 1 to given value of num_rows entered
+# Ruby has .dup method that allows for shallow copy of object to be attained, therefore setting previous_row as equal to current_row.dup allows for tracking of previous row
+# once the current_row has been duplicated to make previous_row, current_row can be set to empty array again to begin building row of Pascal values
+# now, for each value of the current_row, if the value is 1 or equal to the initial row, then push in a 1 to current_row to build the outside perimeter of the triangle since these are all 1s
+# to create the insides of the triangle's rows, subtract 1 from the value to reach the index and subtract 2 from the value to reach the other inside index of the row, then add these values together since each number is the sum of the two numbers directly above it
+# as the loop is completed to create the row, push the row into the result array
+# return the result array which will have n number of nested arrays in which n is the num_rows value inputted into the function/method
