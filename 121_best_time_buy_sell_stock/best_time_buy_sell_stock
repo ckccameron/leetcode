@@ -1,0 +1,25 @@
+# @param {Integer[]} prices
+# @return {Integer}
+
+def max_profit(prices)
+    lowest_price = prices[0]
+    best_profit = 0
+    
+    prices.each do |stock|
+        lowest_price = stock if stock < lowest_price
+        if stock > lowest_price
+            profit = stock - lowest_price
+            best_profit = profit if profit > best_profit
+        end
+    end
+    best_profit
+end
+
+# to find lowest_price in prices input array, start with first price at index 0
+# set best_profit variable equal to 0
+# loop through each price/stock:
+# - lowest_price at which to buy stock is based on finding lowest number in the array -> ex. 7 is first stock, but 1 is next number so 1 becomes the lowest_price; 1 is less than the next number which is 5 so 1 stays as lowest_price and so on throughout prices input array
+# - if the number is greater than the lowest_price stock, then the profit is equal to the stock subtracted by the lowest_price -> ex. 1 is lowest_price and next number is 5 (1 < 5) so profit = 5 - 1 = 4
+# - best_profit is based on finding the biggest difference between succeeding values in the array once lowest_price has been determined -> ex. lowest_price = 1, next number is 5, so profit = 5 - 1 = 4 and this becomes best_profit...say the next number is 3, well profit = 3 - 1 = 2, but 2 < 4 so best_profit is still 4...say the next number is 6, well profit = 6 - 1 = 5 and 5 > 4, so best_profit is now 5 instead of 4
+# return the best_profit once each value of prices array has been looped through
+# also handles the case that stock must be bought before it can be sold aka lowest_price stock must precede a value it subtracts from to reach best_profit 
