@@ -1,0 +1,29 @@
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val = 0, left = nil, right = nil)
+#         @val = val
+#         @left = left
+#         @right = right
+#     end
+# end
+# @param {Integer[]} nums
+# @return {TreeNode}
+
+def sorted_array_to_bst(nums)
+    return nil if nums.size == 0
+    middle = nums.size / 2
+    
+    TreeNode.new(
+    nums[middle],
+    sorted_array_to_bst(nums[0...middle]),
+    sorted_array_to_bst(nums[middle + 1..-1])
+    )
+end
+
+# if the input of nums is 0, return nil because node values are needed to create binary tree
+# to find the middle/split of the tree, divide the nums.size in half
+# given the TreeNode class and the ability to access attributes of val, left and right, instantiate a TreeNode and provide the expected arguments of:
+# - val -> the middle number of nums to act as the root of the binary tree being created
+# - left -> recursively builds side of tree with ["0 up until but not including the middle"]
+# - right -> recursively builds side of tree with node values from ["middle plus 1 to -1"]
