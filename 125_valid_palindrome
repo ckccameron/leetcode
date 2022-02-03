@@ -1,0 +1,12 @@
+# @param {String} s
+# @return {Boolean}
+
+def is_palindrome(s)
+    s = s.gsub(/[^a-zA-Z\d]/, "").downcase
+    s == s.reverse
+end
+
+# after research, Ruby has gsub method aka global substitution method that can use regex expression to susbtitute all characters of a string provided specific parameters
+# by setting a range of all lowercase letters from a to z as well as all uppercase letters from A to Z, we can delete and replace with a blank/empty string
+# downcasing all the letters allows for A and a to match up, for example, as long as the given input string reads the same forward and backward -> ex. Level
+# since the method is returning a true/false boolean output, set s to be exactly equal to s reversed to determine whether input string is valid palindrome
