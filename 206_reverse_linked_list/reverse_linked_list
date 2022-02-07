@@ -1,0 +1,28 @@
+# Definition for singly-linked list.
+# class ListNode
+#     attr_accessor :val, :next
+#     def initialize(val = 0, _next = nil)
+#         @val = val
+#         @next = _next
+#     end
+# end
+# @param {ListNode} head
+# @return {ListNode}
+
+def reverse_list(head)
+    previous = nil
+    while (head)
+        next_node = head.next
+        head.next = previous
+        previous = head
+        head = next_node
+    end
+    previous
+end
+
+# while loop will iterate throughout the given input array for each of the numbers included
+# head array moves to next_node in the list
+# then, assign the next node from the current node location to be the previous node
+# previous node is then assigned to be the current node
+# assign current node to be the next node
+# return previous so that output is the reversed list
